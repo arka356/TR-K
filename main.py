@@ -560,7 +560,7 @@ class KiwoomConditon(QObject):
             self.processStopLoss(jongmok_code)
             pass
 
-        QTimer.singleShot(1000, self.sigProcessStoploss)     ### mh 수정 딜레이 타임을 20->1000으로, 추후 더빠른게 필요하다면 원복, 현재 내 매수매도 타입으로는 필요치 않다.
+        QTimer.singleShot(500, self.sigProcessStoploss)     ### mh 수정 딜레이 타임을 200->500으로, 추후 더빠른게 필요하다면 원복, 현재 내 매수매도 타입으로는 필요치 않다.
         pass
 
     @pyqtSlot()
@@ -583,7 +583,7 @@ class KiwoomConditon(QObject):
         # 바로 signal 발생하는 경우 너무 빨리 많이 돌아감
         # 조건 발생 종목까지 봐야 하므로 종목이 많을 수 있고  많으면 100ms 너무 느림 조건
         # 1초에 같은 종목 두번은 돌릴수 있어야 함
-        QTimer.singleShot(1000, self.sigRequestEtcInfo)       ### mh 수정 딜레이 타임을 20->1000으로, 추후 더빠른게 필요하다면 원복, 현재 내 매수매도 타입으로는 필요치 않다.
+        QTimer.singleShot(100, self.sigRequestEtcInfo)       ### mh 수정 딜레이 타임을 20->100으로, 추후 더빠른게 필요하다면 원복, 현재 내 매수매도 타입으로는 필요치 않다.
         pass
 
     @pyqtSlot()
@@ -1398,7 +1398,7 @@ class KiwoomConditon(QObject):
             if (self.makeOpw00018Info(rQName)):
                 # 연속 데이터 존재 하는 경우 재 조회
                 if (prevNext == "2"):
-                    QTimer.singleShot(100, lambda: self.requestOpw00018(self.account_list[0], prevNext))     ### mh 수정 딜레이 타임을 20->100으로, 추후 더빠른게 필요하다면 원복, 현재 내 매수매도 타입으로는 필요치 않다.
+                    QTimer.singleShot(60, lambda: self.requestOpw00018(self.account_list[0], prevNext))     ### mh 수정 딜레이 타임을 20->60으로, 추후 더빠른게 필요하다면 원복, 현재 내 매수매도 타입으로는 필요치 않다.
                 else:
                     QTimer.singleShot(TR_TIME_LIMIT_MS, self.sigRequestJangoComplete)
 
